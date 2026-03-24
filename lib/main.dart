@@ -179,7 +179,7 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MNIST Digit Recognizer', style: TextStyle(color: Colors.white, fontFamily: 'monospace')),
+        title: const Text('✍️ Ink 2 Digit', style: TextStyle(color: Colors.white, fontFamily: 'monospace')),
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
