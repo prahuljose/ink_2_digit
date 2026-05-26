@@ -16,6 +16,7 @@ subprojects {
     project.layout.buildDirectory.value(newSubprojectBuildDir)
     
     // Fix for Namespace not specified in older packages
+    // Fix compileSdk for plugins that use an outdated API level (e.g. flutter_tflite lStar error)
     afterEvaluate {
         if (project.hasProperty("android")) {
             val android = project.extensions.getByName("android") as com.android.build.gradle.BaseExtension
@@ -24,6 +25,10 @@ subprojects {
                 if (android.namespace.isNullOrEmpty()) {
                     android.namespace = "com.example.${project.name.replace("-", "_")}"
                 }
+            }
+            val current = android.compileSdkVersion
+            if (current == null || current < "android-34") {
+                android.compileSdkVersion(34)
             }
         }
     }
