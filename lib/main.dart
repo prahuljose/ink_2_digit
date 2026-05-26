@@ -234,7 +234,6 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
     if (_modelError != null) {
       cardColor = cs.errorContainer;
       content = Row(
-        key: const ValueKey('error'),
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.error_outline, color: cs.onErrorContainer),
@@ -245,7 +244,6 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
     } else if (!_isModelLoaded) {
       cardColor = cs.surfaceContainerHighest;
       content = Row(
-        key: const ValueKey('loading'),
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
@@ -260,7 +258,6 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
     } else if (_isProcessing) {
       cardColor = cs.surfaceContainerHighest;
       content = Row(
-        key: const ValueKey('processing'),
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
@@ -275,7 +272,6 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
     } else if (_predictedDigit != null) {
       cardColor = cs.primaryContainer;
       content = Row(
-        key: ValueKey('digit_$_predictedDigit'),
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -309,7 +305,6 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
     } else {
       cardColor = cs.surfaceContainerHighest;
       content = Text(
-        key: const ValueKey('prompt'),
         _hasDrawing ? "Hmm, not sure..." : "Draw a digit below",
         style: TextStyle(color: cs.onSurfaceVariant, fontSize: 16),
       );
@@ -318,15 +313,13 @@ class _DigitRecognizerState extends State<DigitRecognizer> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+      height: 112,
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 250),
-        child: content,
-      ),
+      child: Center(child: content),
     );
   }
 
